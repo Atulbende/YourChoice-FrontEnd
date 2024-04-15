@@ -7,12 +7,14 @@ module.exports={
         user_GridUsers:'user/getGridUsers',
         user_OpenUser:'user/openUser',
         user_SaveUser:'user/saveUser'
-        
     },
     common:{
         com_delete:'common/com_delete'
     },
     app:{
-         getkeywords:'app/keywords'   
+         getkeywords:'app/keywords',
+         app_gridCustomers:'app/getGridCustomers',
+         app_customerSave:'app/customerSave',
+         app_openCustomer:'app/openCustomer'
     }
 }

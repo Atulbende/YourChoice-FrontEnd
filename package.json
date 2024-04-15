@@ -12,12 +12,14 @@
     "bcrypt": "^5.1.0",
     "bootstrap": "^5.3.0-alpha3",
     "datatables.net-bs5": "^2.0.2",
+    "dayjs": "^1.11.10",
     "env": "^0.0.2",
     "env-cmd": "^10.1.0",
     "history": "^5.3.0",
     "jquery": "^3.7.1",
     "jquery-ui-dist": "^1.13.2",
     "react": "^18.2.0",
+    "react-datepicker": "^6.6.0",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.13",
     "react-jwt": "^1.2.0",
@@ -34,7 +36,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start:local": "env-cmd -f .env react-scripts start",
+    "start:uat": "env-cmd -f .env.uat react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

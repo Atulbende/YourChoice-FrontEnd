@@ -25,7 +25,7 @@ export default function Grid({redirectTo,data,columns,actions,activity,tableName
     <>        
         <ActionBar ids={ids} setIds={setIds} setRefresh={setRefresh} type='Grid' actionsButton={actions} activity={activity} tableName={tableName}/>
         <div className='tile-body table-responsive '>
-            <table className='  table dataTable stripe' id='sampleTable'> </table>
+            <table className='table dataTable stripe' id='sampleTable'> </table>
        </div>
   </>
 

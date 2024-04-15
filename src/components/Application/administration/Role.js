@@ -13,23 +13,24 @@ export default function Role() {
   const [saveUser]=useSaveUserMutation();
   const [user,setUser]=useState({});
   const [isRequired,setIsRequired]=useState([]);
-  const recordId= useLocation();
-  const saveHandle=()=>{
-      root.form.save(saveUser,isRequired,user)
-  }
+  const {state:recordId}= useLocation();
+  console.log('recordId:',recordId);
+  
+  const saveHandle=async()=>{
+    return await root.form.save(saveUser,isRequired,user);
+}
   useEffect(()=>{
-    root.form.load(OpenUser,recordId?.state,setUser,setIsRequired);
-  },[recordId])
- useEffect(()=>{
-    console.log('user:',user);
- },[user])
+    if(!isLoading){
+     root.form.load(OpenUser,recordId,setUser,setIsRequired);
+    }
+  },[recordId,isLoading])
  const options = [{ value: 'Active', label: 'Active' },{ value: 'DeActive', label: 'DeActive' }];
  const actions=[{"title":'Save',"icon":'fa fa-check',"className":'btn-1',"action":saveHandle}];
   return (
     <>
       <ActionBar type={'Form'} actionsButton={actions}/>
           <div  className='content-form'><br/>
-            <TextFields onChangeEvent={setUser} val={user?.UserName} label='User Name' id={'UserName'} col='col-33'/> 
+            <TextFields onChangeEvent={setUser} val={user?.UserName} label='User Name' id={'UserName'} col={'col-33'}/> 
             <TextFields onChangeEvent={setUser}val={user?.Email} label='Email' id='Email' col='col-33'/> 
             <SelectFields onChangeEvent={setUser}  val={user?.Status} options={options} label='Status' id='Status' col='col-33'></SelectFields>
             <section className="divider col-100" >User Roles</section>

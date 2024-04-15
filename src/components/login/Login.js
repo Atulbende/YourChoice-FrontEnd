@@ -66,7 +66,7 @@ export default function Login() {
        }
     }
   return (
-        <div className='container'>
+        <div className='container imgs'>
             {/* Login page Design */}
             <div className={`login ${loginAnim}`}>
                 <section className='login-title'>

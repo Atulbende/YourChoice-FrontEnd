@@ -74,7 +74,9 @@ export function Themes({Close}){
            </DialogHeader>
                   <DialogBody classes={'row-50 d-center '}>
                     <RadioButton id={'good-morning'} val={'good-morning'} fn={changesTheme} label={'Good Morning'} isChecked={theme==='good-morning'}></RadioButton>
-                    <RadioButton id={'good-afternoon'} val={'good-afternoon'} fn={changesTheme} label={'Good Night'}   isChecked={theme==='good-afternoon'}></RadioButton>
+                    <RadioButton id={'good-afternoon'} val={'good-afternoon'} fn={changesTheme} label={'Good Afternoon'}   isChecked={theme==='good-afternoon'}></RadioButton>
+                    {/* <RadioButton id={'good-evening'} val={'good-evening'} fn={changesTheme} label={'Good Evening'}   isChecked={theme==='good-evening'}></RadioButton> */}
+        
                   </DialogBody>
             <DialogFooter >
               {/* <Button icon='fa-solid fa-floppy-disk' title='Save' action=''/> */}

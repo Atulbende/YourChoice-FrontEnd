@@ -15,7 +15,7 @@ export default function TextFields({onChangeEvent,onSubmition,col='col-33',label
       <span className='group-text-labal'>
         <label  id={`_${id}_`} htmlFor="text">{label}</label>       
       </span>
-      <input id={id} onChange={onChangeHandler}  onKeyUp={HandleOnSubmition} type='text' value={val}></input>
+      <input autocomplete="off" id={id} onChange={onChangeHandler}  onKeyUp={HandleOnSubmition} type='text' value={val}></input>
     </div>
   )
 }

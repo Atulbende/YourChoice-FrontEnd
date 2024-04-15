@@ -2,7 +2,7 @@ import { React, useEffect, useRef, useState } from 'react'
 import './actionbar.scss'
 import $ from 'jquery';
 import 'datatables.net-dt/js/dataTables.dataTables'
-
+import '../../common/loader/actionBtnLoader.css'
 import Dialog from '../../common/dialog/Dialog'
 import { useNavigate } from 'react-router-dom';
 import ConfirmationDialog from '../../common/confirmation-dialog/ConfirmationDialog';
@@ -10,13 +10,14 @@ import { root } from '../../../services/root/root.js';
 import { useComDeleteMutation } from '../../../rtk/common/common.js';
 export default function ActionBar({ ids, setIds, setRefresh, type, actionsButton, activity, tableName }) {
   const [comDelete]=useComDeleteMutation()
-  const Navigate = useNavigate();
+  const [isLoader,setIsLoader]=useState(false);
   const [actionToggle, setActionToggle] = useState('')
   const [isConfirm, setIsConfirm] = useState(false);
   const table = $('#sampleTable').DataTable();
-  
-  function newRecord() {
-    Navigate('/Role', { Id: 0 });
+  const onActinBtn=async(_clickAction)=>{
+    setIsLoader(true);
+     await _clickAction();
+    setIsLoader(false);
   }
   function resetHandle() {
     setRefresh(true);
@@ -47,9 +48,18 @@ export default function ActionBar({ ids, setIds, setRefresh, type, actionsButton
         <div role='button' onClick={toggleActionFn} className='menu-collaps'><i class={`fa-solid fa-circle-chevron-${actionToggle === 'd-flex' ? 'up' : 'down'}`}></i><span>Actions</span></div>
         <div className='trasition-bar'>
           <ul className={`bar-button ${actionToggle}`} >
-            {actionsButton?.map((btn, index) =>
-             <li key={index} onClick={btn.action} className={btn.className}><i className={btn.icon} aria-hidden="true"></i><span>{btn.title}</span></li>)
-             }
+          {actionsButton?.map((btn, index) => (
+                <li key={index} onClick={() => onActinBtn(btn.action)} className={btn.className}>
+                  {!isLoader ? (
+                    <>
+                      <i className={btn.icon} aria-hidden="true"></i>
+                      <span>{btn.title}</span>
+                    </>
+                  ) : (
+                  <i><span class="action_loader"></span></i>  
+                  )}
+                </li>
+              ))}
             {type === 'Grid' && table.rows().count() > 0 &&
               <>
                 <li onClick={() => { selectHandle() }} className='btn-1'><section className='_count'><span>{ids?.length}</span></section><i className="fa fa-tasks p-1" aria-hidden="true"></i><span>{ids?.length > 0 ? `DeSelect` : `Select All`}</span></li>

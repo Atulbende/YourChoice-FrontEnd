@@ -6,6 +6,7 @@
    border: 1px solid var(--border);
    border-radius: 2rem;
    max-height: 4.2rem;
+   height: 2.5rem;
    border: border-box;
    /* animation: slideform 0.3s ease-out; */
    /* transform: translateX(-400%) ; */
@@ -34,6 +35,7 @@
     /* border-radius: 0px; */
     background-color: transparent;
     max-height: 5.2rem;  
+    height: 5.2rem;
  }
  .group-text-labal {
     display: block;

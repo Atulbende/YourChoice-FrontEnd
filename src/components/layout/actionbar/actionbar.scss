@@ -19,7 +19,7 @@
 .bar ul li{
    
     min-width: 7.5rem;
-    min-height: 2rem;
+    min-height: 2.5rem;
     line-height: 2.5rem;
     margin:0px 0.5rem 0  0.5rem;
     border-radius: 20px;
@@ -27,6 +27,9 @@
     border: 1px solid var(--border);
     box-shadow: 0px 4px 5px 0px  rgba(0, 0 , 0, 0.1);
     transition: .35s ease-in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .bar ul li i{
     margin-right: 0.5rem;
@@ -40,15 +43,16 @@
     // padding: 0.6rem;
 }
 ._count{
-    margin-top: -0.5rem;
-    margin-left: -2.2rem;
+    margin-top: -3.0rem;
+    margin-left: -9.2rem;
     background: #007bff !important;
     position: absolute;
     color: white;
     width: 35px;
     height: 35px;
     border-radius: 100% 100% 0%;
-
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (max-width: 768px) {

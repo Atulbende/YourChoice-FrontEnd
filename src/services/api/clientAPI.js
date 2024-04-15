@@ -29,22 +29,25 @@ clientAPI.interceptors.response.use(function  (response) {
       const refreshId=currentState.authControls.refreshId;
       if(error?.response?.data?.statusCode===403 && error?.response?.data?.errors.toString().trim()==='Token Expired'){
             const res=await Axios.post(`${baseURL}user/refreshSession`,{refreshToken:refreshId});
-         
-  
               if(res?.data?.statusCode===205 && res?.data?.message==='Token Refreshed'){
                   console.log(':red:',res)
                   dispatch(setToken({'token':res?.data?.data?.accessTokenId}));
                   return clientAPI.request(error.config); 
-            } 
+            }else if(res?.data?.statusCode===206 && res?.data?.message==='Some Other Person LoginedIn!') {
+                  Screen.Notification.Error(res?.data?.message);
+                  dispatch(logoutUser());
+                  return
+            }
       }else if(error?.response?.data?.statusCode===403 && error?.response?.data?.errors.toString().trim()==='Refresh Token Expired'){
             Screen.Notification.Error(error?.response?.data?.errors.toString().trim());
             dispatch(logoutUser())
+            return
       }else{
-           
             Screen.Notification.Error(error?.response?.data?.errors.toString().trim());
             dispatch(logoutUser())
+            return
       }
-      // return Promise.reject(error);
+      return Promise.reject(error);
 });
 return next(action);
 };

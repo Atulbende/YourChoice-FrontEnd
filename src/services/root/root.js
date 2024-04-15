@@ -20,15 +20,15 @@ export const root={
                 },
                 selectAll:function(){
                     var table = $('#sampleTable').DataTable();
-                    table .rows({page:'current'}).nodes().to$() .addClass('selected');
+                    table.rows({page:'current'}).nodes().to$().addClass('selected');
                     var items = $.map(table.rows('.selected').data(), function (item) {
-                      return item.Pid;
+                      return item?.Pid;
                     }); 
                     return items;
                 },
                 deselectAll:function(){
                     var table=$('#sampleTable').DataTable();
-                    table .rows( '.selected' ).nodes().to$() .removeClass( 'selected' );
+                    table.rows( '.selected' ).nodes().to$().removeClass( 'selected' );
                 },
                 resetGrid:function(){
                     ($('#sampleTable.dataTable').find('tbody')).on('click', 'tr td', function (event) {
