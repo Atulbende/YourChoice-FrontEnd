@@ -1,7 +1,7 @@
 import Keyword from '../../Application/Keyword/Keyword';
 import Roles from '../../Application/administration/Roles';
 import Role from '../../Application/administration/Role';
-import Dashboard from '../../Application/dashboard/Dashboard';
+import Dashboard from '../../Application/Dashboard/Dashboard';
 import Customers from '../../Application/customer/Customers';
 import Customer from '../../Application/customer/Customer';
 
