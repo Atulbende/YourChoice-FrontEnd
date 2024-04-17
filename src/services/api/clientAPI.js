@@ -19,7 +19,7 @@ clientAPI.interceptors.request.use(function async(config) {
       const accessId=currentState.authControls.accessId;
       config.headers["Authorization"] = `Bearer ${accessId}`;
       if (!!currentState?.appControls?.shopId>0) {
-            config.headers["X-App-ID"]= currentState?.appControls?.shopId || 0;
+            config.headers["AppId"]= currentState?.appControls?.shopId || 0;
         }
         console.log('config:',config)
       return config;
