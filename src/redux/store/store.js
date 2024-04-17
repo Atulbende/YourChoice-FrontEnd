@@ -18,7 +18,7 @@ const encryptor = encryptTransform({
 const persistConfig={
         key:'auth',
         storage,
-        // transforms: [encryptor], // Apply encryption transfor
+        transforms: [encryptor], // Apply encryption transfor
 }
 
 const persistedReducer =persistReducer( persistConfig,authReducer);
