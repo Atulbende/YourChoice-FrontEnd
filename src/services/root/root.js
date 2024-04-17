@@ -36,7 +36,6 @@ export const root={
                       });
                 },
                 delete:async function(_id=[],rtk,_activity,_table){
-                    console.log(':id:',_id,_activity)
                     const _data={id:_id,activity:_activity,table:_table};
                     const res=await rtk({data:_data});
                     Screen.Notification.Success(Screen.Notification.Msg.Def5,2000);

@@ -4,10 +4,11 @@ import {app} from "../../../services/api/endPoints";
 const mq_customer=apiSlice.injectEndpoints({
     endpoints:(build)=>({
             customers:build.query({
-                query:()=>({
-                    url:app.app_gridCustomers,
-                    method:'GET',
-                    data:''
+                query:()=>
+                    ({
+                    url: app.app_gridCustomers,
+                    method:'GET'
+
                 }),
                 providesTags:['customers']
             }),

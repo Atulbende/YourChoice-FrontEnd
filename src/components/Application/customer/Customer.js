@@ -11,16 +11,12 @@ export default function Customer() {
 const [openCustomer]=useOpenCustomerMutation();
 const [customerSave]=useCustomerSaveMutation();
 const Navigate=useNavigate()
-
 const [customer,setCustomer]=useState({});
 const [isRequired,setIsRequired]=useState([]);
 const {state:recordId}= useLocation();
 const saveHandle=async()=>{
       return await root.form.save(customerSave,isRequired,customer);
 }
-useEffect(()=>{
-  console.log('customer:',customer)
-},[customer]);
 useEffect(()=>{
   if(!recordId) Navigate('/Customers');
     root.form.load(openCustomer,recordId,setCustomer,setIsRequired);

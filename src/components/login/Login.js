@@ -9,6 +9,7 @@ import LoginButton from '../common/loginButton/LoginButton'
 // import { decodeToken } from "react-jwt";
 import {useDispatch} from 'react-redux';
 import { setAuth } from '../../redux/reducers/authSlice';
+import { setShop } from '../../redux/reducers/appSlice';
 export default function Login() {
     const Dispath=useDispatch()
     const Navigate=useNavigate();
@@ -40,6 +41,7 @@ export default function Login() {
                                 // const a= jwt.decodeToken(loginResponse?.data?.accessTokenId)
                                 // const _decodeToken = decodeToken(loginResponse?.data?.data?.accessTokenId);
                                 Dispath(setAuth({"isLogin":true,"roles":loginResponse?.data?.data?.Roles,"token":loginResponse?.data?.data?.accessTokenId,"refreshToken":loginResponse?.data?.data?.refreshTokenId}));
+                                Dispath(setShop({'shopId':loginResponse?.data?.data?.shopId}))
                                 Navigate('/Dashboard');
                             }else{
                                 Screen.Notification.Error(loginResponse?.data?.errors);

@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "../../rtk/apiSlice";
 import {persistReducer,persistStore } from "redux-persist";
 import uiControlReducer from '../reducers/uiSlice';
+import appReducer from '../reducers/appSlice';
 import authReducer from "../reducers/authSlice";
 import storage from "redux-persist/lib/storage";
 import {axiosMiddleware} from '../../services/api/clientAPI'
@@ -17,15 +18,16 @@ const encryptor = encryptTransform({
 const persistConfig={
         key:'auth',
         storage,
-        transforms: [encryptor], // Apply encryption transform
-
+        // transforms: [encryptor], // Apply encryption transfor
 }
 
-const persistedReducer =persistReducer( persistConfig,authReducer)
+const persistedReducer =persistReducer( persistConfig,authReducer);
+const persistedAppReducer =persistReducer( { key:'app',storage,},appReducer);
 export const store=configureStore({
     reducer:{
         authControls: persistedReducer ,
         uiControls:uiControlReducer,
+        appControls:persistedAppReducer,
         [apiSlice.reducerPath]: apiSlice.reducer,
     },
     middleware:(getDefaultMiddleware)=>getDefaultMiddleware().concat(apiSlice.middleware,axiosMiddleware),

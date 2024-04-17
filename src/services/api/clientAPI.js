@@ -15,8 +15,13 @@ const axiosMiddleware = ({ dispatch, getState }) => next => async action => {
 clientAPI.interceptors.request.use(function async(config) {
       const currentState = getState();
       Screen.LoaderON();
+      console.log('currentState:',currentState?.appControls?.shopId);
       const accessId=currentState.authControls.accessId;
       config.headers["Authorization"] = `Bearer ${accessId}`;
+      if (!!currentState?.appControls?.shopId>0) {
+            config.headers["X-App-ID"]= currentState?.appControls?.shopId || 0;
+        }
+        console.log('config:',config)
       return config;
 }, function (error) {
       return Promise.reject(error);

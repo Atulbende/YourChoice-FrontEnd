@@ -2,9 +2,8 @@ import React from 'react'
 import { useCustomersQuery } from '../../../rtk/app/customer/mq_customer'
 import Grid from '../../common/dataTable/Grid';
 import { useNavigate } from 'react-router-dom';
-
 export default function Customers() {
-    const {data,isLoading} = useCustomersQuery({ refetchOnMount:true });
+    const {data,isLoading} = useCustomersQuery();
     const Navigate=useNavigate()
     const redirectToNew=()=> Navigate('/customer',{state:{ Pid: -1}});
     const columns=[
