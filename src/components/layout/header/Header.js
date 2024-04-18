@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {toggleSidebar} from '../../../redux/reducers/uiSlice';
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector} from 'react-redux';
 import {Dialog,DialogHeader,DialogBody,DialogFooter} from '../../common/dialog/Dialog'
 import TextFields from '../../common/text-field/TextFields' 
 import { Screen } from '../../common/notifications/toastify';
@@ -11,16 +11,24 @@ import { useNavigate } from 'react-router-dom';
 import RadioButton from '../../common/radioButton/RadioButton';
 import { useUserLogoutMutation } from '../../../rtk/login/mq_login';
 import { logoutUser } from '../../../redux/reducers/authSlice';
+import { setShop } from '../../../redux/reducers/appSlice';
 export default function Header() {
   const navigate=useNavigate()
   const [toggleIcon,setToggleIcon]=useState('fa-solid fa-bars');
   const [isSetting,setIsSetting]=useState(false);
   const [UserLogout,{data:isLogout}]=useUserLogoutMutation();
   const Dispatch=useDispatch();
+  const {shopId}=useSelector((state)=>state.appControls);
   const [IsPopup,SetIsPopup]=useState(false);
+  const [IsShopPopup,SetIsShopPopup]=useState(false);
+
   const handleToggle=()=>{
     Dispatch(toggleSidebar());
     setToggleIcon(toggleIcon=='fa-solid fa-bars'?'fa-sharp fa-solid fa-xmark fa-fade':'fa-solid fa-bars');
+  }
+  const handleShopBtn=(id)=>{
+    Dispatch(setShop({'shopId':id}));
+    window.location.reload();
   }
   const logout=async()=>{
     const var_IsLogout= await UserLogout();
@@ -35,9 +43,20 @@ export default function Header() {
   return (
     <>
         <nav className="top-nav ">
-            <div id='start' role="button" onClick={()=>handleToggle()}><div  className='bars' ><span className='bars-circle' ><i className={toggleIcon}></i></span></div><span className='start-title'><a href='#'>Dashboard</a></span></div>
+            <div id='start' role="button" ><div  className='bars' onClick={()=>handleToggle()}><span className='bars-circle' ><i className={toggleIcon}></i></span></div><span className='start-title'><a href='#'>Dashboard</a></span>
+            <i className={'fa fa-cubes shop'} role='button' onClick={()=>{SetIsShopPopup(!IsShopPopup);}}>
+                    <div className={`shop-popup-menu ${IsShopPopup?'':'d-none'}`} >
+                        <ul>
+                            <li className={`${shopId===1?'shop-selected':''}`}><a href='#'  onClick={()=>{handleShopBtn(1)}}><i className="fa fa-shopping-bag"></i><span className='menu-title'> Shop-1</span></a></li>
+                            <li className={`${shopId===2?'shop-selected':''}`}><a href='#' onClick={()=>{handleShopBtn(2)}}><i className="fa fa-shopping-bag"></i><span className='menu-title'> Shop-2</span></a></li>  
+                        </ul>
+                    </div>
+              
+              </i></div>
             <div id='end' role="button"  onClick={()=>{SetIsPopup(!IsPopup);}} ><a href='#'><span><i className="fa fa-user-circle fa-3x"></i></span></a></div>
+           
             <div className={`popup-menu ${IsPopup?``:`d-none`}`} >
+              
               <ul>
                 <li><a href='#'><i className="fa fa-user"></i><span className='menu-title'> Profile</span></a></li>
                 <li><a href='#' onClick={()=>{setIsSetting(!isSetting);SetIsPopup(!IsPopup);}}><i className="fa fa-cog"></i><span className='menu-title'> Setting</span></a></li>  
