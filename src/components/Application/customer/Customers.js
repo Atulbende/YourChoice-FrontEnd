@@ -2,10 +2,15 @@ import React from 'react'
 import { useCustomersQuery } from '../../../rtk/app/customer/mq_customer'
 import Grid from '../../common/dataTable/Grid';
 import { useNavigate } from 'react-router-dom';
+import { root } from '../../../services/root/root';
 export default function Customers() {
     const {data,isLoading} = useCustomersQuery();
     const Navigate=useNavigate()
     const redirectToNew=()=> Navigate('/customer',{state:{ Pid: -1}});
+    const Inword=()=>{
+      const SelectedData=root.grid.getSelectedData();
+      console.log(SelectedData);
+    }
     const columns=[
       { title : 'Pid',data:'Pid',render:(data,_)=>{
         return  '<p class="link-primary" >'+  data.toString() +'0000000' +'</p>'}, 'visible' : true}, 
@@ -18,7 +23,7 @@ export default function Customers() {
       { title : 'Status',data:'Status', 'Status' : true }
       ];
     // Grid Configuration;
-    const actions=[{"title":'New',"icon":'fa fa-plus',"className":'btn-1',"action":redirectToNew}];
+    const actions=[{"title":'New',"icon":'fa fa-plus',"className":'btn-1',"action":redirectToNew},{"title":'Inword',"icon":'fa fa-plus',"className":'btn-1',"action":Inword}];
     const redirectTo='/customer';
     const activity='com_delete';
     const tableName='customers'

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import '../text-field/textfields.css'
-export default function TextFields({onChangeEvent,onSubmition,col='col-33',label,val,id}) {
+ function TextFields({onChangeEvent,onSubmition,col='col-33',label,val,id}) {
 
   function HandleOnSubmition(e){
       if( onSubmition &&  e.keyCode===13){
@@ -19,3 +19,4 @@ export default function TextFields({onChangeEvent,onSubmition,col='col-33',label
     </div>
   )
 }
+export default memo(TextFields)

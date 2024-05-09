@@ -4,7 +4,6 @@ import {useDispatch,useSelector} from 'react-redux';
 import {Dialog,DialogHeader,DialogBody,DialogFooter} from '../../common/dialog/Dialog'
 import TextFields from '../../common/text-field/TextFields' 
 import { Screen } from '../../common/notifications/toastify';
-
 import Button from '../../common/button/Button';
 import './header.css'
 import { useNavigate } from 'react-router-dom';
@@ -21,7 +20,6 @@ export default function Header() {
   const {shopId}=useSelector((state)=>state.appControls);
   const [IsPopup,SetIsPopup]=useState(false);
   const [IsShopPopup,SetIsShopPopup]=useState(false);
-
   const handleToggle=()=>{
     Dispatch(toggleSidebar());
     setToggleIcon(toggleIcon=='fa-solid fa-bars'?'fa-sharp fa-solid fa-xmark fa-fade':'fa-solid fa-bars');
@@ -71,8 +69,6 @@ export default function Header() {
     </>
     )
 }
-
-
 export function Themes({Close}){ 
   const activeTheme=localStorage.getItem('theme')
   const [theme,setTheme]=useState(activeTheme);

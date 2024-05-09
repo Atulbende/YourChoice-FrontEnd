@@ -12,48 +12,48 @@ const clientAPI = Axios.create({
     });
 
 const axiosMiddleware = ({ dispatch, getState }) => next => async action => {    
-clientAPI.interceptors.request.use(function async(config) {
-      const currentState = getState();
-      Screen.LoaderON();
-      console.log('currentState:',currentState?.appControls?.shopId);
-      const accessId=currentState.authControls.accessId;
-      config.headers["Authorization"] = `Bearer ${accessId}`;
-      if (!!currentState?.appControls?.shopId>0) {
-            config.headers["AppId"]= currentState?.appControls?.shopId || 0;
-        }
-        console.log('config:',config)
-      return config;
-}, function (error) {
-      return Promise.reject(error);
-});
-clientAPI.interceptors.response.use(function  (response) {
-      Screen.LoaderOff();
-      return response;
-}, async function (error)  {   
-      const currentState = getState();
-      const refreshId=currentState.authControls.refreshId;
-      if(error?.response?.data?.statusCode===403 && error?.response?.data?.errors.toString().trim()==='Token Expired'){
-            const res=await Axios.post(`${baseURL}user/refreshSession`,{refreshToken:refreshId});
-              if(res?.data?.statusCode===205 && res?.data?.message==='Token Refreshed'){
-                  console.log(':red:',res)
-                  dispatch(setToken({'token':res?.data?.data?.accessTokenId}));
-                  return clientAPI.request(error.config); 
-            }else if(res?.data?.statusCode===206 && res?.data?.message==='Some Other Person LoginedIn!') {
-                  Screen.Notification.Error(res?.data?.message);
-                  dispatch(logoutUser());
+      clientAPI.interceptors.request.use(function async(config) {
+            const currentState = getState();
+            // Screen.LoaderON();
+            console.log('currentState:',currentState?.appControls?.shopId);
+            const accessId=currentState.authControls.accessId;
+            config.headers["Authorization"] = `Bearer ${accessId}`;
+            if (!!currentState?.appControls?.shopId>0) {
+                  config.headers["AppId"]= currentState?.appControls?.shopId || 0;
+            }
+            console.log('config:',config)
+            return config;
+      }, function (error) {
+            return Promise.reject(error);
+      });
+      clientAPI.interceptors.response.use(function  (response) {
+            // Screen.LoaderOff();
+            return response;
+      }, async function (error)  {   
+            const currentState = getState();
+            const refreshId=currentState.authControls.refreshId;
+            if(error?.response?.data?.statusCode===403 && error?.response?.data?.errors.toString().trim()==='Token Expired'){
+                  const res=await Axios.post(`${baseURL}user/refreshSession`,{refreshToken:refreshId});
+                  if(res?.data?.statusCode===205 && res?.data?.message==='Token Refreshed'){
+                        console.log(':red:',res)
+                        dispatch(setToken({'token':res?.data?.data?.accessTokenId}));
+                        return clientAPI.request(error.config); 
+                  }else if(res?.data?.statusCode===206 && res?.data?.message==='Some Other Person LoginedIn!') {
+                        Screen.Notification.Error(res?.data?.message);
+                        dispatch(logoutUser());
+                        return
+                  }
+            }else if(error?.response?.data?.statusCode===403 && error?.response?.data?.errors.toString().trim()==='Refresh Token Expired'){
+                  Screen.Notification.Error(error?.response?.data?.errors.toString().trim());
+                  dispatch(logoutUser())
+                  return
+            }else{
+                  Screen.Notification.Error(error?.response?.data?.errors.toString().trim());
+                  dispatch(logoutUser())
                   return
             }
-      }else if(error?.response?.data?.statusCode===403 && error?.response?.data?.errors.toString().trim()==='Refresh Token Expired'){
-            Screen.Notification.Error(error?.response?.data?.errors.toString().trim());
-            dispatch(logoutUser())
-            return
-      }else{
-            Screen.Notification.Error(error?.response?.data?.errors.toString().trim());
-            dispatch(logoutUser())
-            return
-      }
-      return Promise.reject(error);
-});
+            return Promise.reject(error);
+      });
 return next(action);
 };
 // export const Api= async(method,url,data,res)=>{ 

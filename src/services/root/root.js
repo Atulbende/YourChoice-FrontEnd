@@ -18,11 +18,17 @@ export const root={
                       return item.Pid;
                     }); return items;
                 },
+                getSelectedData: function(){
+                    var table = $('#sampleTable').DataTable();
+                    var items = $.map(table.rows('.selected').data(), function (item) {
+                      return item;
+                    }); return items;
+                },
                 selectAll:function(){
                     var table = $('#sampleTable').DataTable();
                     table.rows({page:'current'}).nodes().to$().addClass('selected');
                     var items = $.map(table.rows('.selected').data(), function (item) {
-                      return item?.Pid;
+                      return item;
                     }); 
                     return items;
                 },
