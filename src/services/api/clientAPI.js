@@ -14,7 +14,7 @@ const clientAPI = Axios.create({
 const axiosMiddleware = ({ dispatch, getState }) => next => async action => {    
       clientAPI.interceptors.request.use(function async(config) {
             const currentState = getState();
-            // Screen.LoaderON();
+             Screen.LoaderON();
             console.log('currentState:',currentState?.appControls?.shopId);
             const accessId=currentState.authControls.accessId;
             config.headers["Authorization"] = `Bearer ${accessId}`;
@@ -27,7 +27,7 @@ const axiosMiddleware = ({ dispatch, getState }) => next => async action => {
             return Promise.reject(error);
       });
       clientAPI.interceptors.response.use(function  (response) {
-            // Screen.LoaderOff();
+             Screen.LoaderOff();
             return response;
       }, async function (error)  {   
             const currentState = getState();
