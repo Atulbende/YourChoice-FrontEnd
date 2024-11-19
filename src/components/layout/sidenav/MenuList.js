@@ -4,10 +4,12 @@ import Role from '../../Application/administration/Role';
 import Dashboard from '../../Application/dashboard/Dashboard';
 import Customers from '../../Application/customer/Customers';
 import Customer from '../../Application/customer/Customer';
-
+import Service from '../../Application/service/Service';
+import Services from '../../Application/service/Services';
 export const  Menu=[ 
     {title:'Dashboard',icon:'fa fa-tachometer',link:'/dashboard',component:<Dashboard/>,access:[1,2]},
     {title:'Customer',icon:'fa fa-user',link:'/customers',component:<Customers/>,access:[7,8]},
+    {title:'Add Services',icon:'fa fa-user',link:'/services',component:<Services/>,access:[9,10]},
     {title:'Administration',icon:'fa fa-address-card', access:[3,4,5,6],
         subMenu:[
                 {title:'User Role',  link:'/roles',   component:<Roles/>, access:[5,6]},
@@ -22,6 +24,8 @@ export const  Routers=[
     {title:'User Role', link:'/role',   component:<Role/>, access:[5,6]},
     {title:'Customer',link:'/customers',component:<Customers/>,access:[7,8]},
     {title:'Customer',link:'/customer',component:<Customer/>,access:[7,8]},
+    {title:'Service',link:'/services',component:<Services/>,access:[9,10]},
+    {title:'Service',link:'/service',component:<Service/>,access:[9,10]},
 ]
 
 export const GerRouter =(roles)=>{

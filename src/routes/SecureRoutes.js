@@ -2,13 +2,14 @@ import React, { useCallback, useEffect } from 'react'
 import { GerRouter } from '../components/layout/sidenav/MenuList'
 import ActionBar from '../components/layout/actionbar/ActionBar'
 import SideNavbar from '../components/layout/sidenav/SideNavbar'
-import Header from '../components/layout/header/Header'
 import Content from '../components/layout/content/Content'
 import Breadcrumb from '../components/layout/breadcrumb/Breadcrumb'
 import Login from '../components/login/Login'
 import { useSelector } from 'react-redux';
 import Main from '../components/layout/main/Main';
 import { Routes,Route, useNavigate } from 'react-router-dom'
+const  Header = React.lazy(()=> import('../components/layout/header/Header'))
+
 export default function SecureRoutes() {
   const Navigate=useNavigate()
   const {roles}=useSelector((state)=>state.authControls);

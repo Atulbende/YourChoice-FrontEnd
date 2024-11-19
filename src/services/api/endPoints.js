@@ -15,6 +15,9 @@ module.exports={
          getkeywords:'app/keywords',
          app_gridCustomers:'app/getGridCustomers',
          app_customerSave:'app/customerSave',
-         app_openCustomer:'app/openCustomer'
+         app_openCustomer:'app/openCustomer',
+         app_gridServices:'app/getGridServices',
+         app_serviceSave:'app/serviceSave',
+         app_openService:'app/openService'
     }
 }
