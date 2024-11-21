@@ -19,7 +19,7 @@ useEffect(()=>{
   if(!recordId) Navigate('/services');
     root.form.load(openService,recordId,setService,setIsRequired);
   },[recordId])
-const GenderOptoins = [{ value: 'Male', label: 'Male' },{ value: 'Female', label: 'Female' }];
+const GenderOptoins = [{ value: 'Male', label: 'Male' },{ value: 'Female', label: 'Female' },{ value: 'Both', label: 'Both' }];
 const actions=[{"title":'Save',"icon":'fa fa-check',"className":'btn-1',"action":saveHandle}];
   return (
     <>
