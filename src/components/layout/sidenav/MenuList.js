@@ -6,10 +6,14 @@ import Customers from '../../Application/customer/Customers';
 import Customer from '../../Application/customer/Customer';
 import Service from '../../Application/service/Service';
 import Services from '../../Application/service/Services';
+import Appointments from '../../Application/appointment/Appointments';
+import Appointment from '../../Application/appointment/Appointment';
+
 export const  Menu=[ 
     {title:'Dashboard',icon:'fa fa-tachometer',link:'/dashboard',component:<Dashboard/>,access:[1,2]},
     {title:'Customer',icon:'fa fa-user',link:'/customers',component:<Customers/>,access:[7,8]},
     {title:'Add Services',icon:'fa fa-user',link:'/services',component:<Services/>,access:[9,10]},
+    {title:'New Appointment',icon:'fa fa-user',link:'/appointments',component:<Appointments/>,access:[11,12]},
     {title:'Administration',icon:'fa fa-address-card', access:[3,4,5,6],
         subMenu:[
                 {title:'User Role',  link:'/roles',   component:<Roles/>, access:[5,6]},
@@ -26,6 +30,8 @@ export const  Routers=[
     {title:'Customer',link:'/customer',component:<Customer/>,access:[7,8]},
     {title:'Service',link:'/services',component:<Services/>,access:[9,10]},
     {title:'Service',link:'/service',component:<Service/>,access:[9,10]},
+    {title:'New Appointment',link:'/appointments',component:<Appointments/>,access:[11,12]},
+    {title:'Appointment',link:'/appointment',component:<Appointment/>,access:[11,12]},
 ]
 
 export const GerRouter =(roles)=>{

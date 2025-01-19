@@ -15,13 +15,11 @@ const axiosMiddleware = ({ dispatch, getState }) => next => async action => {
       clientAPI.interceptors.request.use(function async(config) {
             const currentState = getState();
              Screen.LoaderON();
-            console.log('currentState:',currentState?.appControls?.shopId);
             const accessId=currentState.authControls.accessId;
             config.headers["Authorization"] = `Bearer ${accessId}`;
             if (!!currentState?.appControls?.shopId>0) {
                   config.headers["AppId"]= currentState?.appControls?.shopId || 0;
             }
-            console.log('config:',config)
             return config;
       }, function (error) {
             return Promise.reject(error);
@@ -35,7 +33,6 @@ const axiosMiddleware = ({ dispatch, getState }) => next => async action => {
             if(error?.response?.data?.statusCode===403 && error?.response?.data?.errors.toString().trim()==='Token Expired'){
                   const res=await Axios.post(`${baseURL}user/refreshSession`,{refreshToken:refreshId});
                   if(res?.data?.statusCode===205 && res?.data?.message==='Token Refreshed'){
-                        console.log(':red:',res)
                         dispatch(setToken({'token':res?.data?.data?.accessTokenId}));
                         return clientAPI.request(error.config); 
                   }else if(res?.data?.statusCode===206 && res?.data?.message==='Some Other Person LoginedIn!') {

@@ -40,7 +40,7 @@ export default function Login() {
                                 Screen.Notification.Success(loginResponse?.data?.message);
                                 // const a= jwt.decodeToken(loginResponse?.data?.accessTokenId)
                                 // const _decodeToken = decodeToken(loginResponse?.data?.data?.accessTokenId);
-                                Dispath(setAuth({"isLogin":true,"roles":loginResponse?.data?.data?.Roles,"token":loginResponse?.data?.data?.accessTokenId,"refreshToken":loginResponse?.data?.data?.refreshTokenId}));
+                                Dispath(setAuth({"isLogin":true,"roles":loginResponse?.data?.data?.Roles,"token":loginResponse?.data?.data?.accessTokenId,"refreshToken":loginResponse?.data?.data?.refreshTokenId,"userId":loginResponse?.data?.data?.userId}));
                                 Dispath(setShop({'shopId':loginResponse?.data?.data?.shopId}))
                                 Navigate('/Dashboard');
                             }else{

@@ -12,7 +12,8 @@ export default function Grid({redirectTo,data,columns,actions,activity,tableName
   const [ids,setIds]=useState([]);
   const [Refresh, setRefresh] = useState(true);
   useEffect(() => {
-    if(Refresh){
+    console.log('Refresh:',Refresh);
+    if(!!Refresh || data){
       root.grid.resetGrid();
       setIds([]);
       root.grid.init(data,columns,Navigate,redirectTo,setIds);

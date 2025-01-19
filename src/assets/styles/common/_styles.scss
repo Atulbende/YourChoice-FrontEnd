@@ -10,7 +10,6 @@
 .d-none{
     display: none !important;
 }
-
 .m-selected{
     background: var(--hover);
 }
@@ -110,6 +109,16 @@
 //         width: calc(50% - 1rem);
 //     }
 // 
+.label{
+    margin: auto;
+    padding: auto;
+    color: red;
+    // background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+}
 body{
     background: linear-gradient(90deg, #8a87c8, #776BCC);
   }

@@ -18,6 +18,14 @@ module.exports={
          app_openCustomer:'app/openCustomer',
          app_gridServices:'app/getGridServices',
          app_serviceSave:'app/serviceSave',
-         app_openService:'app/openService'
+         app_openService:'app/openService',
+         app_gridAppointments:'app/getGridAppointments',
+         app_openAppointment:'app/openAppointment',
+         app_getClientInfo:'app/getClientInfo',
+         app_getEmployeeList:'app/getEmployeeList',
+         app_getServiceList:'app/getServiceList',
+         app_gridAppointmentLists:'app/getGridAppointmentLists',
+         app_appointmentListsSave:'app/appointmentListsSave',
+         app_appointmentSave:'app/appointmentSave'         
     }
 }

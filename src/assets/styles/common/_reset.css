@@ -2,15 +2,12 @@
 html {
   box-sizing: border-box;
   user-select: none;
-
 }
-
 *, *:before, *:after {
   box-sizing: inherit;
   -webkit-tap-highlight-color: transparent;
 
 }
-
 /* Remove default margin and padding */
 body, h1, h2, h3, h4, h5, h6, p, ol, ul {
   margin: 0;
@@ -32,7 +29,6 @@ padding: 0;
  
 }
 input:focus, input.form-control:focus {
-
   outline:none !important;
   outline-width: 0 !important;
   box-shadow: none;
@@ -56,6 +52,8 @@ input, button, textarea, select {
 button {
   border: none;
   cursor: pointer;
+  background-color: transparent;
+
 }
 
 /* Remove default link styles */

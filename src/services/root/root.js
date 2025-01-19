@@ -51,11 +51,17 @@ export const root={
             form:{
                 load:async function(rtk,id,setForm,setRequired){
                     if(id){
-                        const res = await rtk({data:id});
-                        res?.data?.data?.required.forEach((_v)=>{$(`#_${_v}_`).addClass('required');})
-                        setRequired(res?.data?.data?.required);
-                        sessionStorage.setItem('formObj',JSON.stringify(res?.data?.data?.result[0]));
-                        setForm(res?.data?.data?.result[0]);
+                        try {
+                            const res = await rtk({data:id});
+                            res?.data?.data?.required.forEach((_v)=>{$(`#_${_v}_`).addClass('required');})
+                            setRequired(res?.data?.data?.required);
+                            sessionStorage.setItem('formObj',JSON.stringify(res?.data?.data?.result[0]));
+                            setForm(res?.data?.data?.result[0]);
+                            return  res?.data?.data?.result[0];
+                        } catch (error) {
+                            console.log("error:",error);
+                        }
+                      
                     }
                 },
                 save:async function(rtk,isRequired,formObj){
@@ -67,6 +73,7 @@ export const root={
                     }else{
                         Screen.Notification.Warm(res?.data?.data?.result?.Msg,2000);
                     }
+                    return res;
                     }
                     // console.log('isRequired:',isRequired);
                 },

@@ -4,6 +4,7 @@ const initialState={
     isLogin:false,
     accessId:null,
     refreshId:null,
+    userId:null,
     roles:[]
 }
 const authSlice=createSlice({
@@ -21,6 +22,7 @@ const authSlice=createSlice({
                 state.isLogin=  payload?.isLogin
                 state.accessId=payload?.token
                 state.refreshId=payload?.refreshToken
+                state.userId=payload?.userId
                 state.roles=JSON.parse(payload?.roles) 
             },
         getAuth:(state,{payload})=>{
@@ -30,6 +32,7 @@ const authSlice=createSlice({
             state.isLogin= false;
             state.accessId=null;
             state.refreshId=null
+            state.userId=null
             state.roles=[];
         }
 

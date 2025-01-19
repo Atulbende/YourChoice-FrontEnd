@@ -8,7 +8,7 @@ const mq_common=apiSlice.injectEndpoints({
                     method:'POST',
                     data:data
                 }),
-                invalidatesTags:['users','customers']
+                invalidatesTags:['users','customers','appointmentItemList']
             })
     })
     // endpoints:(build)=>({

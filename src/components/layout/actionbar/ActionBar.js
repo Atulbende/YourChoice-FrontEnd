@@ -9,7 +9,6 @@
   import { root } from '../../../services/root/root.js';
   import { useComDeleteMutation } from '../../../rtk/common/common.js';
   function ActionBar({ ids, setIds, setRefresh, type, actionsButton, activity, tableName }) {
-    console.log('red:::ActionBar')
     const [comDelete]=useComDeleteMutation()
     const [isLoader,setIsLoader]=useState(false);
     const [actionToggle, setActionToggle] = useState('')

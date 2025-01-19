@@ -45,8 +45,8 @@ export default function Header() {
             <i className={'fa fa-cubes shop'} role='button' onClick={()=>{SetIsShopPopup(!IsShopPopup);}}>
                     <div className={`shop-popup-menu ${IsShopPopup?'':'d-none'}`} >
                         <ul>
-                            <li className={`${shopId===1?'shop-selected':''}`}><a href='#'  onClick={()=>{handleShopBtn(1)}}><i className="fa fa-shopping-bag"></i><span className='menu-title'> Shop-1</span></a></li>
-                            <li className={`${shopId===2?'shop-selected':''}`}><a href='#' onClick={()=>{handleShopBtn(2)}}><i className="fa fa-shopping-bag"></i><span className='menu-title'> Shop-2</span></a></li>  
+                            <li className={`${shopId===1?'shop-selected':''}`}><a href='#'  onClick={()=>{handleShopBtn(1)}}><i className="fa fa-shopping-bag"></i><span className='menu-title'> Nagpur Road</span></a></li>
+                            <li className={`${shopId===2?'shop-selected':''}`}><a href='#' onClick={()=>{handleShopBtn(2)}}><i className="fa fa-shopping-bag"></i><span className='menu-title'> Chhoti Bazar</span></a></li>  
                         </ul>
                     </div>
               

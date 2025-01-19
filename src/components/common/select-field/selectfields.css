@@ -1,10 +1,8 @@
 
 /* React-Select component css changes  ::Start*/
 .css-b62m3t-container{
-   width: 100%;
-   
+   width: 100%;  
 }
-
 .css-13cymwt-control{
    border-radius:2rem!important;  
    border-width: 0px!important;
@@ -15,7 +13,6 @@
    background-color: var(--fields)!important;
    color: var(--color)!important;
 }
-
 .css-1nmdiq5-menu > * :hover{
    background-color: var(--bg-color)!important; 
  }
@@ -51,10 +48,11 @@
    max-height: auto;
    border: border-box;
    max-width: 100%;
+   /* z-index: 9999; */
 }
 .group-select-labal{
     display: block;
-    padding: 0.5rem;
+    padding: 0.5rem!important;
     font-size: .85em;
     font-weight: 500;
     text-align: start;
@@ -81,6 +79,7 @@
     max-height: 5.2rem;
     border: border-box;
     align-items: flex-start;
+    /* z-index: 888; */
  }
  .css-13cymwt-control{
    border-radius:2rem!important;  
